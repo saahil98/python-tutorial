@@ -1,0 +1,78 @@
+$ man 1 tmux
+
+TMUX IS A TERMINAL MULTIPLEXER(tmux is a program which runs in a terminal and allows multiple other terminal programs to be run 
+inside it. Each program inside tmux gets its own terminal managed by tmux, which can be accessed from the single terminal 
+where tmux is running - this called multiplexing and tmux is a terminal multiplexer)
+
+
+IT LETS YOU SWITCH EASILY BETWEEN SEVERAL PROGRAMS IN ONE TERMINAL, 
+DETACH THEM (THEY KEEP RUNNING IN THE BACKGROUND) AND REATTACH THEM TO A DIFFERENT TERMINAL.
+
+
+http://man.openbsd.org/tmux.1
+
+
+---install tmux
+$sudo apt install tmux
+
+---get into tmux 
+$tmux
+
+<---------------------------------->
+[0] 0:bash*
+
+[0]      --> session name
+0:bash   --> current window
+
+<---------------------------------->
+
+SPLITTING PANES
+
+---new pane vertical
+$ctrl + b % 
+
+---switch panes
+$ctrl + b <-
+$ctrl + b ->
+
+---new bottom pane (horizontal)
+$ctrl + b "
+
+---close pane
+$exit
+
+
+----------------x-----------------
+WINDOWS
+
+---new window
+$ctrl + b c
+
+---switch BACK
+$ctrl + b 1 -->for window 1
+$ctrl + b 2 -->for window 2
+
+
+---rename
+$ctrl + b , <name>
+
+---------------x--------------------
+SESSIONS
+
+---create new session
+$tmux new -s <session_name>  --> you can specify name while creating session 
+
+---view sessions in background
+$tmux ls
+
+---detach session
+$ctrl + b d
+
+---REATTACH session
+$tmus attach -t <name>
+
+---rename session
+$tmux rename-session -t <session id> <new_name>
+
+---delete session
+$tmux kill-session -t <session_name>

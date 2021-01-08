@@ -1,0 +1,61 @@
+INSTALL VIRTUAL ENVIORMENT:
+
+>>>pip install virtualenv
+>>>python -m venv env
+
+env is the virtual enviorment directory
+
+--------------------------x-----------------------
+
+DJANGO
+>>>env\Scripts\activate.bat
+>>>pip list  			# to view the list of installed packages/modules
+>>>deactivate			# To deactivate the virtual enviorment
+
+>>>env\Scripts\activate.bat
+>>>pip3 install django
+>>>django-admin						#to view packages
+>>>python -m django --version		#to check version
+
+---start project
+
+>>>django-admin startproject <name_of_your_project>
+>>>python manage.py startapp <name_of_your_app>
+
+---Go to settings.py under project directory 
+---add 'hello' under INSTALLED_APPS = [] list
+
+>>>INSTALLED_APPS = [
+		'hello',
+		.
+		.
+		.
+		.
+]
+
+-------------------------x------------------------
+FLASK
+>>>env\Scripts\activate
+>>>pip install flask
+
+
+--- two ways you can run flask server
+--- 1 Enviorment variable
+>>>set FLASK_APP=flaskblog.py 		#(windows os)		
+>>>export FLASK_APP=flaskblog.py 	#(linux os)
+
+>>>run flask 						#starts server
+
+
+--- turn on debug mode
+>>>set FLASK_DEBUG=1				#(windows os)	
+>>>export FLASK_DEBUG=1				#(linux os)	
+
+
+---run using python command(preffered way)
+>>>python <file-name>.py 			#run.py file in flask tutorial
+
+---turn on debug mode inside <file-name>.py
+>>>if __name__ == '__main__':
+...    app.run(debug=True)
+

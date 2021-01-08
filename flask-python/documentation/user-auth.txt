@@ -1,0 +1,15 @@
+--install bcrypt		#for hashing password
+>>>pip install flask-bcrypt
+
+---run python
+>>>from flask_bcrypt import Bcrypt
+>>>bcrypt = Bcrypt()
+
+
+>>>bcrypt.generate_password_hash('testing')							#returns bytecode
+
+
+>>>bcrypt.generate_password_hash('testing').decode('utf-8')			#returns string
+
+---fuction to check password
+>>>bcrypt.check_password_hash(hashed_pw,'testing') ->	#(<hashed password which is aleady stored>, <inserted password 																												in form)

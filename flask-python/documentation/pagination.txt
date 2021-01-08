@@ -1,0 +1,54 @@
+PAGINATE
+
+---open python interpreter
+>python
+
+>>>from flaskblog.models import Post
+>>>posts = Post.query.all()
+>>>for post in posts:					#check all data
+...		print(post)
+
+>>>posts = Post.query.paginate()
+>>>posts								#this will print the pagination object
+
+>>>dir(posts)							#this will print attributes and methods
+
+>>>posts.per_page						#posts per page by default set to 20
+>>>posts.page 							#current page
+
+
+#print out individual post displays 20 posts
+>>>for post in posts.items:
+...		print(post)
+
+
+post = Post.query.paginate(page=2)
+
+>>>for post in posts.items:				#displays 5 post
+...		print(post)
+
+
+post = Post.query.paginate(per_page=5)	#set per page post
+
+post = Post.query.paginate(per_page=5 ,page=2)		#5 post per page , on page 2 which displays number 6 to 10 posts
+
+
+---iter_page() function to iterate pages below website
+>>>from flaskblog.models import Post
+>>>posts = Post.query.paginate(page=1, per_page=1)
+
+---none value is nothing but ... or > or < link which we see below websites to change pages
+>>> for page in posts.iter_pages():
+...     print(page)
+...
+1
+2
+3
+4
+5
+6
+7
+8
+None
+13
+14

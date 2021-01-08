@@ -1,0 +1,15 @@
+New Usecase with New Project -- ORCH
+ 
+ITPA Account creation -> Create the Service account in Vault for windows respective privilege (not admin privs)
+     -> Add Linux/ Windows/ Database Servers
+
+
+
+ITPA Solutions in the respective projects -> 
+
+
+1. Create an IRIS Incident
+2. It execute the soltion automatically
+3. On successful completion of step 2 it Closes the Incident
+
+

@@ -1,0 +1,86 @@
+---example for User and Post models
+
+---run Python interpreter
+
+>python
+
+---import db
+
+>>>form flaskblog import db
+
+---create db from code(.py)
+>>>db.create_all()
+
+---import User & Post class
+>>>from flaskblog import User, Post
+
+---create User Object
+>>>user_1 = User(username='Saahil', email= 'abc@abc.com', password='password')
+
+---add to database
+>>>db.session.add(user_1)
+>>>db.session.commit()
+
+---to delete
+>>>db.session.delete(user_1)
+
+---drop all tables
+>>>db.drop_all() 
+
+
+------------------------x----------------------
+
+some extra functions
+
+>>>User.query.all()						#shows all data
+>>>User.query.first()					#shows first data
+>>>USer.query.filter_by(conditiom)		#filter rows that satisfies condition
+
+
+print using loop
+
+>>>for post in Post.query.all():
+...		print(post.title)
+
+OUTPUT:
+BLOG 1
+BLOG 2
+
+
+-----------------------------------------------------x------------------------------------------------------
+$models.py
+---->
+
+#Database model (Object-relational)
+
+
+from datetime import datetime
+from flaskblog import db, login_manager
+from flask_login import UserMixin
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class User(db.Model, UserMixin):    #used to create DB Object
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    password = db.Column(db.String(60), nullable=False)
+    posts = db.relationship('Post', backref='author', lazy=True)
+
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+
+class Post(db.Model):   #used to create DB Object
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Post('{self.title}', '{self.date_posted}')"

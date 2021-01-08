@@ -1,0 +1,98 @@
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                       7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * *  command_to_execute         (no space)
+
+
+$ => shell
+> => code editor
+
+###### Use Case ######
+
+
+###### Sample crontab ######
+
+
+---check crontask
+$crontab -l
+
+---open editor
+$crontab -e
+
+---By default it is set to vim or nano, you can change default using the below command
+
+---if nano not set to default editor then
+$export EDITOR=/usr/bin/nano
+
+
+---inside crontask we add commands which we schedule to run
+---for example
+>* * * * * echo 'Hello' >> /tmp/test.txt                      #this will add Hello in test.txt file every minute under tmp directory
+
+---check the file
+$cat /tmp/test.txt
+
+
+--------------------------
+EXAMPLES
+
+---every 30 minute
+>30 * * * * echo 'Hello' >> /tmp/test.txt
+
+---1st january midnight 5:30am
+>30 5 1 1 * echo 'Hello' >> /tmp/test.txt
+
+---every monday midnight 12:00am
+>0 0 * * 1 echo 'Hello' >> /tmp/test.txt
+
+---1st and 15th of evry month
+>0 0 1,15 * * echo 'Hello' >> /tmp/test.txt
+
+---every 10 min everyday
+>*/10 * * * * echo 'Hello' >> /tmp/test.txt
+
+---every 3 days
+>0 0 */3 * * echo 'Hello' >> /tmp/test.txt
+
+---every hour between 0 to 5 am everyday
+>0 0-5 * * * echo 'Hello' >> /tmp/test.txt
+
+---at noon everyday of month may to august
+>0 12 * 5-8 * echo 'Hello' >> /tmp/test.txt
+
+--------------------
+ADVANCED EXAMPLES
+
+---30 minutes monday to friday from 9 am to 5 pm
+>30 9-17 * * 1-5 echo 'Hello' >> /tmp/test.txt
+
+
+--------------------------------------------------------------------------
+# Empty temp folder every Friday at 5pm
+0 5 * * 5 rm -rf /tmp/*
+
+# Backup images to Google Drive every night at midnight
+0 0 * * * rsync -a ~/Pictures/ ~/Google\ Drive/Pictures/
+
+Note: always write comment in crontask to avoid confusion
+
+-----------------------------
+
+---edit user2's crontask
+>crontab -u user2 -e
+
+---view root's crontask
+>sudo crontab -l
+Password: <enter-password>
+
+---remove crontask
+>crontab -r
+
+-------------------------------
+NOTE:   Use this site for reassurance that you are putting in the right value 
+        -->  crontab.guru 
